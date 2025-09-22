@@ -7,320 +7,910 @@
     <meta name="keywords" content="toko bunga, bunga segar, buket, karangan bunga, hadiah, pernikahan">
     <meta name="author" content="Flower Market Team">
     <title>Flower Market - Toko Bunga Online Terpercaya</title>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Dancing+Script:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --pink-milk: #f8bbd9;
+            --baby-blue: #87ceeb;
+            --pink-light: #fdf2f8;
+            --blue-light: #e0f2fe;
+            --white: #ffffff;
+            --gray-dark: #333333;
+            --gray-medium: #666666;
+            --gray-light: #f8f9fa;
+            --shadow-light: rgba(248, 187, 217, 0.2);
+            --shadow-medium: rgba(135, 206, 235, 0.3);
+            --gradient-primary: linear-gradient(135deg, var(--pink-milk), var(--baby-blue));
+            --gradient-bg: linear-gradient(135deg, var(--pink-light) 0%, var(--blue-light) 100%);
+            --transition: all 0.3s ease;
+            --border-radius: 15px;
+            --max-width: 1200px;
+            --spacing-xs: 0.5rem;
+            --spacing-sm: 1rem;
+            --spacing-md: 2rem;
+            --spacing-lg: 3rem;
+            --spacing-xl: 4rem;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            background: var(--gradient-bg);
+            color: var(--gray-dark);
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 0 var(--spacing-sm);
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        .text-gradient {
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: var(--spacing-xs) var(--spacing-md);
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 500;
+            text-decoration: none;
+            text-align: center;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .btn-primary {
+            background: var(--gradient-primary);
+            color: var(--white);
+            box-shadow: 0 4px 15px var(--shadow-light);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px var(--shadow-medium);
+        }
+
+        .card {
+            background: var(--white);
+            border-radius: var(--border-radius);
+            padding: var(--spacing-md);
+            box-shadow: 0 5px 20px var(--shadow-light);
+            transition: var(--transition);
+            border: 1px solid rgba(248, 187, 217, 0.1);
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px var(--shadow-medium);
+        }
+
+        .card-featured {
+            background: linear-gradient(135deg, var(--white) 0%, var(--pink-light) 100%);
+            border: 2px solid var(--pink-milk);
+        }
+
+        .section {
+            padding: var(--spacing-xl) 0;
+        }
+
+        .section-alt {
+            background: var(--white);
+        }
+
+        .grid {
+            display: grid;
+            gap: var(--spacing-md);
+        }
+
+        .grid-2 {
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        }
+
+        .grid-3 {
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        }
+
+        .grid-4 {
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        }
+
+        .flex {
+            display: flex;
+        }
+
+        .flex-center {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .flex-between {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .flex-column {
+            flex-direction: column;
+        }
+
+        .flex-wrap {
+            flex-wrap: wrap;
+        }
+
+        .heading-primary {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 700;
+            font-family: 'Dancing Script', cursive;
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .heading-secondary {
+            font-size: clamp(2rem, 4vw, 2.5rem);
+            font-weight: 600;
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .heading-tertiary {
+            font-size: 1.5rem;
+            font-weight: 500;
+            margin-bottom: var(--spacing-sm);
+        }
+
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav {
+            padding: var(--spacing-sm) 0;
+        }
+
+        .nav-brand {
+            font-size: 2rem;
+            font-weight: 700;
+            font-family: 'Dancing Script', cursive;
+        }
+
+        .nav-list {
+            display: flex;
+            list-style: none;
+            gap: var(--spacing-md);
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: var(--gray-dark);
+            font-weight: 500;
+            padding: var(--spacing-xs) var(--spacing-sm);
+            border-radius: 25px;
+            transition: var(--transition);
+        }
+
+        .nav-link:hover {
+            background: var(--gradient-primary);
+            color: var(--white);
+        }
+
+        .hero {
+            background: var(--gradient-bg);
+            background-image: 
+                radial-gradient(circle at 20% 20%, var(--pink-milk) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, var(--baby-blue) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
+            padding: calc(80px + var(--spacing-xl)) 0 var(--spacing-xl);
+            min-height: 100vh;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="flowers" patternUnits="userSpaceOnUse" width="20" height="20"><circle cx="5" cy="5" r="1" fill="%23f8bbd9" opacity="0.3"/><circle cx="15" cy="15" r="1.5" fill="%2387ceeb" opacity="0.2"/></pattern></defs><rect width="100" height="100" fill="url(%23flowers)"/></svg>') repeat;
+            opacity: 0.1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-subtitle {
+            font-size: 1.2rem;
+            margin-bottom: var(--spacing-md);
+            color: var(--gray-medium);
+        }
+
+        /* Feature Cards */
+        .feature-card {
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-icon {
+            font-size: 4rem;
+            margin-bottom: var(--spacing-sm);
+            display: block;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: var(--gradient-primary);
+            opacity: 0;
+            transform: rotate(45deg);
+            transition: var(--transition);
+            z-index: -1;
+        }
+
+        .feature-card:hover::before {
+            opacity: 0.05;
+        }
+
+        /* Product Cards */
+        .product-card {
+            overflow: hidden;
+            position: relative;
+        }
+
+        .product-image {
+            height: 200px;
+            background: var(--gradient-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            color: var(--white);
+            margin: calc(-1 * var(--spacing-md)) calc(-1 * var(--spacing-md)) var(--spacing-md);
+            position: relative;
+        }
+
+        .product-image::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 50px;
+            background: linear-gradient(to top, rgba(255, 255, 255, 0.9), transparent);
+        }
+
+        .product-title {
+            color: var(--baby-blue);
+            margin-bottom: var(--spacing-xs);
+        }
+
+        .product-price {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--pink-milk);
+        }
+
+        /* Gallery */
+        .gallery-item {
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            border-radius: var(--border-radius);
+        }
+
+        .gallery-placeholder {
+            height: 200px;
+            background: var(--gradient-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: var(--white);
+            margin-bottom: var(--spacing-sm);
+            position: relative;
+            transition: var(--transition);
+        }
+
+        .gallery-item:hover .gallery-placeholder {
+            transform: scale(1.05);
+        }
+
+        .testimonial {
+            background: linear-gradient(135deg, var(--white) 0%, var(--blue-light) 100%);
+            border-left: 4px solid var(--pink-milk);
+            position: relative;
+        }
+
+        .testimonial::before {
+            content: '"';
+            position: absolute;
+            top: -10px;
+            left: var(--spacing-sm);
+            font-size: 4rem;
+            color: var(--pink-milk);
+            opacity: 0.3;
+            font-family: 'Dancing Script', cursive;
+        }
+
+        .testimonial-author {
+            font-style: normal;
+            font-weight: 500;
+            color: var(--baby-blue);
+            margin-top: var(--spacing-sm);
+        }
+
+        .contact-card {
+            background: linear-gradient(135deg, var(--white) 0%, var(--pink-light) 100%);
+            border: 2px solid var(--pink-milk);
+        }
+
+        .contact-icon {
+            display: inline-block;
+            margin-right: var(--spacing-xs);
+        }
+
+        .contact-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: var(--spacing-sm);
+        }
+
+        .contact-table td {
+            padding: var(--spacing-xs);
+            border-bottom: 1px solid rgba(248, 187, 217, 0.2);
+        }
+
+        .contact-table td:first-child {
+            font-weight: 500;
+        }
+
+        footer {
+            background: linear-gradient(135deg, var(--gray-dark) 0%, #2c3e50 100%);
+            color: var(--white);
+            padding: var(--spacing-xl) 0 var(--spacing-sm);
+        }
+
+        .footer-section {
+            margin-bottom: var(--spacing-md);
+        }
+
+        .footer-title {
+            color: var(--pink-milk);
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .footer-list {
+            list-style: none;
+        }
+
+        .footer-list li {
+            margin-bottom: var(--spacing-xs);
+        }
+
+        .footer-link {
+            color: #ecf0f1;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-link:hover {
+            color: var(--pink-milk);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: var(--spacing-md);
+            margin-top: var(--spacing-md);
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-fade-in {
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-list {
+                display: none;
+            }
+            
+            .nav {
+                text-align: center;
+            }
+            
+            .hero {
+                padding-top: calc(60px + var(--spacing-md));
+                text-align: center;
+            }
+            
+            .flex-between {
+                flex-direction: column;
+                gap: var(--spacing-sm);
+            }
+            
+            .grid-2,
+            .grid-3,
+            .grid-4 {
+                grid-template-columns: 1fr;
+            }
+            
+            :root {
+                --spacing-xl: 2rem;
+                --spacing-lg: 1.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 var(--spacing-xs);
+            }
+            
+            .card {
+                padding: var(--spacing-sm);
+            }
+            
+            .hero {
+                min-height: 80vh;
+            }
+        }
+
+        /* Print Styles */
+        @media print {
+            header {
+                position: static;
+            }
+            
+            .hero {
+                padding-top: var(--spacing-md);
+                min-height: auto;
+                page-break-after: always;
+            }
+            
+            .card:hover,
+            .btn:hover {
+                transform: none;
+                box-shadow: none;
+            }
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --white: #1a1a1a;
+                --gray-dark: #f5f5f5;
+                --gray-light: #2a2a2a;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+
+        .nav-link:focus,
+        .btn:focus,
+        .footer-link:focus {
+            outline: 2px solid var(--pink-milk);
+            outline-offset: 2px;
+        }
+    </style>
 </head>
 
 <body>
     <header>
-        <nav>
-            <div>
-                <h1>🌸 Flower Market</h1>
-            </div>
-            <ul>
-                <li><a href="#home">Beranda</a></li>
-                <li><a href="#products">Produk</a></li>
-                <li><a href="#about">Tentang</a></li>
-                <li><a href="#contact">Kontak</a></li>
-            </ul>
-        </nav>
+        <div class="container">
+            <nav class="nav flex-between">
+                <div class="nav-brand text-gradient">🌸 Flower Market</div>
+                <ul class="nav-list">
+                    <li><a href="#home" class="nav-link">Beranda</a></li>
+                    <li><a href="#products" class="nav-link">Produk</a></li>
+                    <li><a href="#about" class="nav-link">Tentang</a></li>
+                    <li><a href="#contact" class="nav-link">Kontak</a></li>
+                </ul>
+            </nav>
+        </div>
     </header>
 
     <main>
-        <section id="home">
-            <div>
-                <h1>Keindahan Bunga untuk Setiap Momen</h1>
-                <p>Temukan koleksi bunga segar terbaik untuk membuat setiap acara Anda menjadi istimewa</p>
-                <a href="#products">Jelajahi Koleksi</a>
+        <section id="home" class="hero flex-center">
+            <div class="container hero-content text-center animate-fade-in">
+                <h1 class="heading-primary text-gradient">Where Every Bloom Tells a Story</h1>
+                <p class="hero-subtitle">Temukan koleksi bunga segar terbaik untuk membuat setiap acara Anda menjadi istimewa</p>
+                <a href="#products" class="btn btn-primary">Jelajahi Koleksi</a>
             </div>
         </section>
 
-        <section>
-            <div>
-                <h2>Mengapa Memilih Kami?</h2>
-                <div>
-                    <article>
-                        <div>🌹</div>
-                        <h3>Bunga Segar</h3>
+        <section class="section">
+            <div class="container">
+                <h2 class="heading-secondary text-center text-gradient">Mengapa Memilih Kami?</h2>
+                <div class="grid grid-3">
+                    <article class="card feature-card">
+                        <span class="feature-icon">🌹</span>
+                        <h3 class="heading-tertiary">Bunga Segar</h3>
                         <p>Kami menyediakan bunga-bunga segar yang dipetik langsung dari kebun terbaik untuk memastikan kualitas dan kesegaran terjamin.</p>
                     </article>
                     
-                    <article>
-                        <div>🚚</div>
-                        <h3>Pengiriman Cepat</h3>
+                    <article class="card feature-card card-featured">
+                        <span class="feature-icon">🚚</span>
+                        <h3 class="heading-tertiary">Pengiriman Cepat</h3>
                         <p>Layanan pengiriman same-day untuk area Samarinda dan sekitarnya, memastikan bunga sampai dalam kondisi sempurna.</p>
                     </article>
                     
-                    <article>
-                        <div>🎨</div>
-                        <h3>Desain Kreatif</h3>
+                    <article class="card feature-card">
+                        <span class="feature-icon">🎨</span>
+                        <h3 class="heading-tertiary">Desain Kreatif</h3>
                         <p>Tim florist berpengalaman siap membuat rangkaian bunga sesuai dengan keinginan dan tema acara Anda.</p>
                     </article>
                 </div>
             </div>
         </section>
 
-        <section id="products">
-            <div>
-                <h2>Koleksi Produk Kami</h2>
-                <div>
-                    <article>
-                        <div>🌹</div>
+        <section id="products" class="section section-alt">
+            <div class="container">
+                <h2 class="heading-secondary text-center text-gradient">Koleksi Produk Kami</h2>
+                <div class="grid grid-3">
+                    <article class="card product-card">
+                        <div class="product-image">🌹</div>
                         <div>
-                            <h3>Buket Mawar</h3>
+                            <h3 class="heading-tertiary product-title">Buket Mawar</h3>
                             <p>Buket mawar merah segar untuk ungkapan cinta dan kasih sayang</p>
-                            <p><strong>Harga: Rp 150.000</strong></p>
+                            <p class="product-price">Rp 150.000</p>
                         </div>
                     </article>
                     
-                    <article>
-                        <div>🌻</div>
+                    <article class="card product-card">
+                        <div class="product-image">🌻</div>
                         <div>
-                            <h3>Buket Matahari</h3>
+                            <h3 class="heading-tertiary product-title">Buket Matahari</h3>
                             <p>Buket bunga matahari yang ceria dan penuh semangat untuk berbagai acara</p>
-                            <p><strong>Harga: Rp 120.000</strong></p>
+                            <p class="product-price">Rp 120.000</p>
                         </div>
                     </article>
                     
-                    <article>
-                        <div>🌺</div>
+                    <article class="card product-card card-featured">
+                        <div class="product-image">🌺</div>
                         <div>
-                            <h3>Rangkaian Pernikahan</h3>
+                            <h3 class="heading-tertiary product-title">Rangkaian Pernikahan</h3>
                             <p>Rangkaian bunga elegan dan mewah untuk hari bahagia pernikahan Anda</p>
-                            <p><strong>Harga: Rp 500.000</strong></p>
+                            <p class="product-price">Rp 500.000</p>
                         </div>
                     </article>
                     
-                    <article>
-                        <div>🌷</div>
+                    <article class="card product-card">
+                        <div class="product-image">🌷</div>
                         <div>
-                            <h3>Buket Tulip</h3>
+                            <h3 class="heading-tertiary product-title">Buket Tulip</h3>
                             <p>Buket tulip warna-warni yang menawan dan cocok untuk hadiah spesial</p>
-                            <p><strong>Harga: Rp 200.000</strong></p>
+                            <p class="product-price">Rp 200.000</p>
                         </div>
                     </article>
                     
-                    <article>
-                        <div>🌼</div>
+                    <article class="card product-card">
+                        <div class="product-image">🌼</div>
                         <div>
-                            <h3>Buket Daisy</h3>
+                            <h3 class="heading-tertiary product-title">Buket Daisy</h3>
                             <p>Buket bunga daisy putih yang simpel namun elegan</p>
-                            <p><strong>Harga: Rp 100.000</strong></p>
+                            <p class="product-price">Rp 100.000</p>
                         </div>
                     </article>
                     
-                    <article>
-                        <div>🌸</div>
+                    <article class="card product-card">
+                        <div class="product-image">🌸</div>
                         <div>
-                            <h3>Buket Sakura</h3>
+                            <h3 class="heading-tertiary product-title">Buket Sakura</h3>
                             <p>Buket bunga sakura pink yang cantik dan romantis</p>
-                            <p><strong>Harga: Rp 180.000</strong></p>
+                            <p class="product-price">Rp 180.000</p>
                         </div>
                     </article>
                 </div>
             </div>
         </section>
 
-        <section>
-            <div>
-                <h2>Galeri Karya Kami</h2>
-                <div>
-                    <figure>
-                        <div>🖼️ Foto Rangkaian Pernikahan 1</div>
+        <section class="section">
+            <div class="container">
+                <h2 class="heading-secondary text-center text-gradient">Galeri Karya Kami</h2>
+                <div class="grid grid-4">
+                    <figure class="gallery-item">
+                        <div class="gallery-placeholder">🖼️</div>
                         <figcaption>Rangkaian bunga pernikahan tema putih elegant</figcaption>
                     </figure>
                     
-                    <figure>
-                        <div>🖼️ Foto Buket Valentine</div>
+                    <figure class="gallery-item">
+                        <div class="gallery-placeholder">🖼️</div>
                         <figcaption>Buket mawar merah spesial untuk Valentine</figcaption>
                     </figure>
                     
-                    <figure>
-                        <div>🖼️ Foto Dekorasi Event</div>
+                    <figure class="gallery-item">
+                        <div class="gallery-placeholder">🖼️</div>
                         <figcaption>Dekorasi bunga untuk acara corporate</figcaption>
                     </figure>
                     
-                    <figure>
-                        <div>🖼️ Foto Hand Bouquet</div>
+                    <figure class="gallery-item">
+                        <div class="gallery-placeholder">🖼️</div>
                         <figcaption>Hand bouquet untuk wisuda</figcaption>
                     </figure>
                 </div>
             </div>
         </section>
 
-        <!-- About Section -->
-        <section id="about">
-            <div>
-                <h2>Tentang Flower Market</h2>
-                <article>
-                    <p>
-                        Flower Market telah melayani kebutuhan bunga segar di Samarinda, Kalimantan Timur sejak tahun 2018. 
-                        Kami berkomitmen untuk memberikan bunga berkualitas tinggi dengan pelayanan terbaik kepada setiap pelanggan.
-                    </p>
-                    <p>
-                        Tim florist kami yang berpengalaman siap membantu Anda menciptakan momen-momen indah dengan 
-                        rangkaian bunga yang sempurna untuk setiap ocasion, mulai dari pernikahan, ulang tahun, 
-                        wisuda, anniversary, hingga acara corporate dan duka cita.
-                    </p>
-                    <p>
-                        Dengan pengalaman lebih dari 7 tahun, kami telah melayani ribuan pelanggan dan menciptakan 
-                        ribuan rangkaian bunga yang memukau. Kepuasan pelanggan adalah prioritas utama kami.
-                    </p>
-                </article>
-                
-                <aside>
-                    <h3>Visi Kami</h3>
-                    <p>Menjadi toko bunga terdepan di Kalimantan Timur yang menghadirkan kebahagiaan melalui keindahan bunga.</p>
+        <section id="about" class="section section-alt">
+            <div class="container">
+                <h2 class="heading-secondary text-center text-gradient">Tentang Flower Market</h2>
+                <div class="grid grid-2">
+                    <article class="card">
+                        <p>
+                            Flower Market telah melayani kebutuhan bunga segar di Samarinda, Kalimantan Timur sejak tahun 2018. 
+                            Kami berkomitmen untuk memberikan bunga berkualitas tinggi dengan pelayanan terbaik kepada setiap pelanggan.
+                        </p>
+                        <p>
+                            Tim florist kami yang berpengalaman siap membantu Anda menciptakan momen-momen indah dengan 
+                            rangkaian bunga yang sempurna untuk setiap ocasion, mulai dari pernikahan, ulang tahun, 
+                            wisuda, anniversary, hingga acara corporate dan duka cita.
+                        </p>
+                        <p>
+                            Dengan pengalaman lebih dari 7 tahun, kami telah melayani ribuan pelanggan dan menciptakan 
+                            ribuan rangkaian bunga yang memukau. Kepuasan pelanggan adalah prioritas utama kami.
+                        </p>
+                    </article>
                     
-                    <h3>Misi Kami</h3>
-                    <ul>
-                        <li>Menyediakan bunga segar berkualitas tinggi</li>
-                        <li>Memberikan pelayanan terbaik kepada pelanggan</li>
-                        <li>Menciptakan desain bunga yang inovatif dan menarik</li>
-                        <li>Membangun hubungan jangka panjang dengan pelanggan</li>
-                    </ul>
-                </aside>
+                    <aside class="card card-featured">
+                        <h3 class="heading-tertiary text-gradient">Visi Kami</h3>
+                        <p>Menjadi toko bunga terdepan di Kalimantan Timur yang menghadirkan kebahagiaan melalui keindahan bunga.</p>
+                        
+                        <h3 class="heading-tertiary text-gradient">Misi Kami</h3>
+                        <ul>
+                            <li>Menyediakan bunga segar berkualitas tinggi</li>
+                            <li>Memberikan pelayanan terbaik kepada pelanggan</li>
+                            <li>Menciptakan desain bunga yang inovatif dan menarik</li>
+                            <li>Membangun hubungan jangka panjang dengan pelanggan</li>
+                        </ul>
+                    </aside>
+                </div>
             </div>
         </section>
 
-        <!-- Testimonial Section -->
-        <section>
-            <div>
-                <h2>Testimoni Pelanggan</h2>
-                <div>
-                    <blockquote>
+        <section class="section">
+            <div class="container">
+                <h2 class="heading-secondary text-center text-gradient">Testimoni Pelanggan</h2>
+                <div class="grid grid-3">
+                    <blockquote class="card testimonial">
                         <p>"Bunga dari Flower Market selalu segar dan indah. Pelayanannya juga sangat memuaskan!"</p>
-                        <cite>- Nayul, Pelanggan Setia</cite>
+                        <cite class="testimonial-author">- Nayul, Pelanggan Setia</cite>
                     </blockquote>
                     
-                    <blockquote>
+                    <blockquote class="card testimonial card-featured">
                         <p>"Rangkaian bunga pernikahan saya sangat sempurna. Terima kasih Flower Market!"</p>
-                        <cite>- Ayu & Irvan, Pasangan Pengantin</cite>
+                        <cite class="testimonial-author">- Ayu & Irvan, Pasangan Pengantin</cite>
                     </blockquote>
                     
-                    <blockquote>
+                    <blockquote class="card testimonial">
                         <p>"Pengiriman cepat dan bunga selalu dalam kondisi prima. Recommended banget!"</p>
-                        <cite>- Ojan, Pelanggan Regular</cite>
+                        <cite class="testimonial-author">- Ojan, Pelanggan Regular</cite>
                     </blockquote>
                 </div>
             </div>
         </section>
 
-        <!-- Contact Section -->
-        <section id="contact">
-            <div>
-                <h2>Hubungi Kami</h2>
-                <div>
-                    <article>
-                        <h3>📍 Alamat Toko</h3>
-                        <address>
-                            Jl. M Yani No. 123<br>
-                            Kelurahan Air Putih<br>
-                            Samarinda, Kalimantan Timur<br>
-                            76114
-                        </address>
-                    </article>
+        <section id="contact" class="section section-alt">
+            <div class="container">
+                <h2 class="heading-secondary text-center text-gradient">Hubungi Kami</h2>
+                <div class="grid grid-2">
+                    <div class="grid">
+                        <article class="card contact-card">
+                            <h3 class="heading-tertiary"><span class="contact-icon">📍</span>Alamat Toko</h3>
+                            <address>
+                                Jl. M Yani No. 123<br>
+                                Kelurahan Air Putih<br>
+                                Samarinda, Kalimantan Timur<br>
+                                76114
+                            </address>
+                        </article>
+                        
+                        <article class="card contact-card">
+                            <h3 class="heading-tertiary"><span class="contact-icon">📞</span>Nomor Telepon</h3>
+                            <p>Telepon Toko: <a href="tel:+6254212345678">+62 542-123-4567</a></p>
+                            <p>WhatsApp: <a href="https://wa.me/6281234567890">+62 812-3456-7890</a></p>
+                        </article>
+                        
+                        <article class="card contact-card">
+                            <h3 class="heading-tertiary"><span class="contact-icon">✉️</span>Email</h3>
+                            <p>Email Pemesanan: <a href="mailto:order@flowermarket.com">order@flowermarket.com</a></p>
+                        </article>
+                        
+                        <article class="card contact-card">
+                            <h3 class="heading-tertiary"><span class="contact-icon">🕒</span>Jam Operasional</h3>
+                            <table class="contact-table">
+                                <tr>
+                                    <td>Senin - Jumat</td>
+                                    <td>08:00 - 20:00 WITA</td>
+                                </tr>
+                                <tr>
+                                    <td>Sabtu</td>
+                                    <td>08:00 - 21:00 WITA</td>
+                                </tr>
+                                <tr>
+                                    <td>Minggu</td>
+                                    <td>09:00 - 18:00 WITA</td>
+                                </tr>
+                            </table>
+                        </article>
+                    </div>
                     
-                    <article>
-                        <h3>📞 Nomor Telepon</h3>
-                        <p>Telepon Toko: <a href="tel:+6254212345678">+62 542-123-4567</a></p>
-                        <p>WhatsApp: <a href="https://wa.me/6281234567890">+62 812-3456-7890</a></p>
-                    </article>
-                    
-                    <article>
-                        <h3>✉️ Email</h3>
-                        <p>Email Pemesanan: <a href="mailto:order@flowermarket.com">order@flowermarket.com</a></p>
-                    </article>
-                    
-                    <article>
-                        <h3>🕒 Jam Operasional</h3>
-                        <table>
-                            <tr>
-                                <td>Senin - Jumat</td>
-                                <td>08:00 - 20:00 WITA</td>
-                            </tr>
-                            <tr>
-                                <td>Sabtu</td>
-                                <td>08:00 - 21:00 WITA</td>
-                            </tr>
-                            <tr>
-                                <td>Minggu</td>
-                                <td>09:00 - 18:00 WITA</td>
-                            </tr>
-                        </table>
-                    </article>
+                    <aside class="card card-featured">
+                        <h3 class="heading-tertiary text-gradient">Area Pengiriman</h3>
+                        <ul>
+                            <li>Samarinda Seberang</li>
+                            <li>Samarinda Kota</li>
+                            <li>Palaran</li>
+                            <li>Balikpapan (Dengan Biaya Tambahan)</li>
+                        </ul>
+                    </aside>
                 </div>
-                
-                <aside>
-                    <h3>Area Pengiriman</h3>
-                    <ul>
-                        <li>Samarinda Sebrang</li>
-                        <li>Samarinda Kota</li>
-                        <li>Palaran</li>
-                        <li>Balikpapan (Dengan Biaya Tambahan)</li>
-                    </ul>
-                </aside>
             </div>
         </section>
     </main>
 
-    <!-- Footer -->
     <footer>
-        <div>
-            <div>
-                <section>
-                    <h3>Flower Market</h3>
+        <div class="container">
+            <div class="grid grid-4">
+                <section class="footer-section">
+                    <h3 class="footer-title">Flower Market</h3>
                     <p>
                         Toko bunga terpercaya di Samarinda dengan koleksi bunga segar berkualitas tinggi 
                         untuk setiap momen spesial dalam hidup Anda. Kepuasan pelanggan adalah prioritas kami.
                     </p>
                 </section>
                 
-                <section>
-                    <h3>Layanan Kami</h3>
-                    <ul>
-                        <li><a href="#products">Buket Bunga</a></li>
-                        <li><a href="#products">Rangkaian Pernikahan</a></li>
-                        <li><a href="#products">Dekorasi Event</a></li>
-                        <li><a href="#contact">Pengiriman Same Day</a></li>
-                        <li><a href="#products">Hand Bouquet Wisuda</a></li>
-                        <li><a href="#products">Karangan Bunga Duka</a></li>
+                <section class="footer-section">
+                    <h3 class="footer-title">Layanan Kami</h3>
+                    <ul class="footer-list">
+                        <li><a href="#products" class="footer-link">Buket Bunga</a></li>
+                        <li><a href="#products" class="footer-link">Rangkaian Pernikahan</a></li>
+                        <li><a href="#products" class="footer-link">Dekorasi Event</a></li>
+                        <li><a href="#contact" class="footer-link">Pengiriman Same Day</a></li>
+                        <li><a href="#products" class="footer-link">Hand Bouquet Wisuda</a></li>
+                        <li><a href="#products" class="footer-link">Karangan Bunga Duka</a></li>
                     </ul>
                 </section>
                 
-                <section>
-                    <h3>Informasi</h3>
-                    <ul>
-                        <li><a href="#about">Tentang Kami</a></li>
-                        <li><a href="#contact">Cara Pemesanan</a></li>
-                        <li><a href="#contact">Kebijakan Pengiriman</a></li>
-                        <li><a href="#">Syarat & Ketentuan</a></li>
-                        <li><a href="#">Kebijakan Privasi</a></li>
-                        <li><a href="#">FAQ</a></li>
+                <section class="footer-section">
+                    <h3 class="footer-title">Informasi</h3>
+                    <ul class="footer-list">
+                        <li><a href="#about" class="footer-link">Tentang Kami</a></li>
+                        <li><a href="#contact" class="footer-link">Cara Pemesanan</a></li>
+                        <li><a href="#contact" class="footer-link">Kebijakan Pengiriman</a></li>
+                        <li><a href="#" class="footer-link">Syarat & Ketentuan</a></li>
+                        <li><a href="#" class="footer-link">Kebijakan Privasi</a></li>
+                        <li><a href="#" class="footer-link">FAQ</a></li>
                     </ul>
                 </section>
                 
-                <section>
-                    <h3>Media Sosial</h3>
-                    <ul>
-                        <li><a href="https://instagram.com/flowermarket_smd" target="_blank">Instagram @flowermarket_bpp</a></li>
-                        <li><a href="https://facebook.com/flowermarketsamarinda" target="_blank">Facebook Flower Market</a></li>
-                        <li><a href="https://wa.me/6281234567890" target="_blank">WhatsApp Business</a></li>
-                        <li><a href="https://tiktok.com/@flowermarket_smd" target="_blank">TikTok @flowermarket_bpp</a></li>
+                <section class="footer-section">
+                    <h3 class="footer-title">Media Sosial</h3>
+                    <ul class="footer-list">
+                        <li><a href="https://instagram.com/flowermarket_smd" target="_blank" class="footer-link">Instagram @flowermarket_smd</a></li>
+                        <li><a href="https://facebook.com/flowermarketsamarinda" target="_blank" class="footer-link">Facebook Flower Market</a></li>
+                        <li><a href="https://wa.me/6281234567890" target="_blank" class="footer-link">WhatsApp Business</a></li>
+                        <li><a href="https://tiktok.com/@flowermarket_smd" target="_blank" class="footer-link">TikTok @flowermarket_smd</a></li>
                     </ul>
                 </section>
             </div>
             
-            <div>
-                <hr>
-                <div>
-                    <h4>Referensi Desain:</h4>
-                    <ul>
-                        <li><a href="https://dribbble.com/search/flower-shop-website" target="_blank">Dribble - Website Flower Shop</a></li>
-                        <li><a href="https://www.awwwards.com/websites/flowers/" target="_blank">Awwwards - Website Flower</a></li>
-                        <li><a href="https://pinterest.com/search/pins/?q=flower%20shop%20website%20design" target="_blank">Pinterest - Flower Website</a></li>
-                    </ul>
+            <div class="footer-bottom text-center">
+                <hr style="border: none; height: 1px; background: rgba(255, 255, 255, 0.1); margin: var(--spacing-md) 0;">
+                <p>&copy; 2025 Flower Market Samarinda. Semua hak cipta dilindungi undang-undang.</p>
+                
+                <div style="margin-top: var(--spacing-md);">
+                    <h4 class="footer-title" style="margin-bottom: var(--spacing-sm);">Referensi Desain & Inspirasi:</h4>
+                    <div class="grid grid-2" style="max-width: 800px; margin: 0 auto; gap: var(--spacing-sm);">
+                        <div>
+                            <h5 style="color: var(--baby-blue); margin-bottom: var(--spacing-xs); font-size: 0.9rem;">Design Inspiration:</h5>
+                            <ul class="footer-list" style="font-size: 0.85rem;">
+                                <li><a href="https://dribbble.com/search/flower-shop-website" target="_blank" class="footer-link">Dribbble - Flower Shop Designs</a></li>
+                                <li><a href="https://www.behance.net/search/projects?search=flower%20shop%20website" target="_blank" class="footer-link">Behance - Floral Website Portfolio</a></li>
+                                <li><a href="https://www.awwwards.com/websites/flowers/" target="_blank" class="footer-link">Awwwards - Award-winning Flower Sites</a></li>
+                                <li><a href="https://pinterest.com/search/pins/?q=flower%20shop%20website%20design" target="_blank" class="footer-link">Pinterest - Flower Website UI/UX</a></li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h5 style="color: var(--baby-blue); margin-bottom: var(--spacing-xs); font-size: 0.9rem;">Color & Theme References:</h5>
+                            <ul class="footer-list" style="font-size: 0.85rem;">
+                                <li><a href="https://colorhunt.co/palette/pink-blue-pastel" target="_blank" class="footer-link">ColorHunt - Pink & Blue Pastels</a></li>
+                                <li><a href="https://coolors.co/f8bbd9-87ceeb-fdf2f8-e0f2fe" target="_blank" class="footer-link">Coolors - Pink Milk & Baby Blue Palette</a></li>
+                                <li><a href="https://unsplash.com/s/photos/pink-flowers" target="_blank" class="footer-link">Unsplash - Pink Flower Photography</a></li>
+                                <li><a href="https://fonts.google.com/specimen/Poppins+Dancing+Script" target="_blank" class="footer-link">Google Fonts - Poppins & Dancing Script</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div style="margin-top: var(--spacing-sm); padding-top: var(--spacing-sm); border-top: 1px solid rgba(255, 255, 255, 0.1);">
+                        <p style="font-size: 0.8rem; color: #bdc3c7;">
+                            Design crafted with CSS3, Flexbox & Grid • Responsive & Accessible • 
+                            <span style="color: var(--pink-milk);">♡</span> Made with love for beautiful flowers
+                        </p>
+                    </div>
                 </div>
             </div>
         </div>
     </footer>
+
+    <script>
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-fade-in');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.card').forEach(card => {
+            observer.observe(card);
+        });
+
+        function toggleMobileMenu() {
+            const navList = document.querySelector('.nav-list');
+            navList.style.display = navList.style.display === 'flex' ? 'none' : 'flex';
+        }
+    </script>
 </body>
 </html>
